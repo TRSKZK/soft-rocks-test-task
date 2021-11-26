@@ -11,3 +11,10 @@ export interface UserToAdd {
   userName: string,
   email?: string,
 }
+
+export interface patchUser {
+  name?: string,
+  email?: string,
+  phone?: number,
+  username?: string,
+}

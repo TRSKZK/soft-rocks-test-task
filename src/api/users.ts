@@ -1,4 +1,4 @@
-import { User, UserToAdd } from '../typedefs'
+import { User, UserToAdd, patchUser } from '../typedefs'
 const USERS_URL = 'https://mate.academy/students-api/users';
 
 export async function loadUsers():Promise<User[]> {
@@ -27,10 +27,9 @@ export async function addUser(body: UserToAdd):Promise<User> {
   }
 
   const addedUser = await response.json();
-  // console.log(addedUser)
 
   return addedUser;
-}
+};
 
 export async function deleteUser(userId: number):Promise<User>{
   const response = await fetch(`${USERS_URL}/${userId}`, {
@@ -44,4 +43,23 @@ export async function deleteUser(userId: number):Promise<User>{
   const deletedUser = await response.json();
 
   return deletedUser;
+};
+
+export async function changeUser(userId: number, body: patchUser ) {
+  const response = await fetch(`${USERS_URL}/${userId}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  });
+
+  if (!response.ok) {
+    throw new Error(`${response.status} - ${response.statusText}`);
+  }
+
+  const patchedUser = await response.json();
+  console.log(patchedUser)
+
+  return patchedUser;
 }

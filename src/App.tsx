@@ -18,6 +18,8 @@ const  App: React.FC = () => {
     setSelectedUser(value);
   }, []);
 
+  console.log(userId)
+
   return (
     <Routes>
        <Route
@@ -31,7 +33,12 @@ const  App: React.FC = () => {
        />
        <Route
          path={`/details/${userId}`}
-         element={<ContactDetails selectedUser={selectedUser}/>}
+         element={
+          <ContactDetails
+            userId={userId}
+            selectedUser={selectedUser}
+          />
+        }
        />
     </Routes>
   )

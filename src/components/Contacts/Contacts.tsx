@@ -3,7 +3,7 @@ import ContactAddForm from '../ContactAddForm';
 import { NavLink } from 'react-router-dom';
 import './Contacts.scss';
 import { User } from '../../typedefs';
-import { loadUsers, deleteUser } from '../../api/users';
+import { loadUsers, deleteUser, addUser } from '../../api/users';
 import { useCallback } from 'react';
 
 interface Props {
@@ -13,6 +13,7 @@ interface Props {
 
 export const Contacts: React.FC<Props> = ({ handleUserIdChange, passSelectedUser }) => {
   const [users, setUsers] = useState<User[]>([]);
+  // const [userId, setUserId] = useState(0);
 
   const getUsersData = async () => {
     const users = await loadUsers();
@@ -21,12 +22,15 @@ export const Contacts: React.FC<Props> = ({ handleUserIdChange, passSelectedUser
   }
 
   useEffect(() => {
-    getUsersData()
+
+    getUsersData();
+
 
   },[]);
 
   const updateUsers = useCallback((users: User[]) => {
     setUsers(users);
+    
   }, []);
 
   const hanleUserDeletion = async (userId: number) => {
@@ -35,12 +39,15 @@ export const Contacts: React.FC<Props> = ({ handleUserIdChange, passSelectedUser
     if (result) {
       getUsersData();
     }
+
   }
 
   return (
     <div>
       <h1>Contacts Page</h1>
-      <ContactAddForm updateUsers={updateUsers}/>
+      <ContactAddForm
+        updateUsers={updateUsers}
+      />
 
       <div className="contacts-container">
         <ul className="contacts-list">
@@ -52,7 +59,7 @@ export const Contacts: React.FC<Props> = ({ handleUserIdChange, passSelectedUser
                 onClick={() => {
                   handleUserIdChange(user.id);
                   passSelectedUser(user);
-                  console.log(user)
+                  // setUserId(user.id);
                 }}
               >
                 Details

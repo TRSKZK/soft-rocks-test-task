@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ContactAddForm from '../ContactAddForm';
+import ConfirmationWindow from '../ConfirmationWindow';
 import { NavLink } from 'react-router-dom';
 import './Contacts.scss';
 import { User } from '../../typedefs';
@@ -13,6 +14,7 @@ interface Props {
 
 export const Contacts: React.FC<Props> = ({ handleUserIdChange, passSelectedUser }) => {
   const [users, setUsers] = useState<User[]>([]);
+  const [userDeleted, setUserDeleted] = useState(false)
 
   const getUsersData = async () => {
     const users = await loadUsers();
@@ -37,18 +39,25 @@ export const Contacts: React.FC<Props> = ({ handleUserIdChange, passSelectedUser
 
     if (result) {
       getUsersData();
+      setUserDeleted(true)
     }
 
   }
+  const closeModal = useCallback(() => {
+    setUserDeleted(false);
+  },[])
 
   return (
     <div className="contacts-container">
+      <ConfirmationWindow
+        closeModal={closeModal}
+        userDeleted={userDeleted}/>
       <h1>Contacts Page</h1>
       <ContactAddForm
         updateUsers={updateUsers}
       />
 
-      <div>
+      <div className={userDeleted ? 'blured' : ''}>
         <ul className="contacts-list">
           {users.length && users.map(user => (
             <li

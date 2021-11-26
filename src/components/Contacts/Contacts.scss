@@ -1,0 +1,57 @@
+.contacts-container {
+  padding-left: 50px;
+}
+
+.contacts-list {
+  list-style: none;
+  padding: 0;
+
+  &__card {
+    padding: 10px;
+    max-width: 500px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #D3D3D3;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: all 0.3s;
+    &:hover {
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      transform: scale(1.001);
+    }
+  }
+  &__buttons-container {
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+}
+
+.button {
+  display: inline-block;
+  transition: all 0.3s;
+}
+
+.detail-button {
+  text-decoration: none;
+  color: black;
+
+  &:hover {
+    color: turquoise;
+  }
+}
+
+.delete-button {
+  background-color: #fff;
+  color: red;
+  font-weight: bold;
+
+  &:hover {
+    background-color: red;
+    color: white;
+  }
+}

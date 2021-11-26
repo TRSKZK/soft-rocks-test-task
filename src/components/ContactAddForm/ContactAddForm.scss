@@ -1,7 +1,22 @@
 .form {
   max-width: 500px;
-
-  &-element {
-    margin-bottom: 10px;
+  margin-top: 10px;
+  box-sizing: border-box;
+  &__fieldset {
+    border-radius: 5px;
+    padding: 20px;
   }
+
+
+  &__group {
+    margin-bottom: 15px;
+  }
+
+  &__input {
+    border: 1px solid #9b9b9b;
+    width: 50%;
+    border-radius: 5px;
+    height: 25px;
+  }
+
 }

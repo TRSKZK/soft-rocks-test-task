@@ -1,4 +1,4 @@
-import React, { useImperativeHandle } from 'react';
+import React from 'react';
 import { changeUser } from '../../api/users'
 import { useState } from 'react';
 import { User } from '../../typedefs';
@@ -22,9 +22,10 @@ export const ContactDetails: React.FC<Props> = ({ selectedUser, userId }) => {
   }
 
   return (
-    <>
+    <div className="datails-container">
       {selectedUser && (
         <form
+          className="edit-form"
           action="POST"
           onSubmit={hadleFormSubmit}
         >
@@ -84,6 +85,6 @@ export const ContactDetails: React.FC<Props> = ({ selectedUser, userId }) => {
           </button>
         </form>
       )}
-    </>
+    </div>
   )
 };

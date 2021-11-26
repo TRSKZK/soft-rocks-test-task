@@ -37,12 +37,15 @@ export const ContactAddForm: React.FC<Props> = ({updateUsers}) => {
       action="POST"
       onSubmit={handleFormSubmit}
     >
-      <fieldset>
+      <fieldset className="form__fieldset">
         <legend>Please add a new user</legend>
-        <label htmlFor="name">
-          Name:
-          <div className="form-element">
+        <label
+          className="form__label"
+          htmlFor="name">
+          <div className="form__group">
             <input
+              placeholder="Name"
+              className="form__input"
               name="name"
               type="text"
               value={name}
@@ -51,10 +54,14 @@ export const ContactAddForm: React.FC<Props> = ({updateUsers}) => {
           </div>
         </label>
 
-        <label htmlFor="user-name">
-          User name:
-          <div className="form-element">
+        <label
+          className="form__label"
+          htmlFor="user-name"
+        >
+          <div className="form__group">
             <input
+              placeholder="User Name"
+              className="form__input"
               name="user-name"
               type="text"
               value={userName}
@@ -64,9 +71,10 @@ export const ContactAddForm: React.FC<Props> = ({updateUsers}) => {
         </label>
 
         <label htmlFor="email">
-          Email:
-          <div className="form-element">
+          <div className="form__group">
             <input
+              className="form__input"
+              placeholder="example@email.com"
               name="email"
               type="text"
               value={email}
@@ -76,9 +84,10 @@ export const ContactAddForm: React.FC<Props> = ({updateUsers}) => {
         </label>
 
         <label htmlFor="phone">
-          Phone:
-          <div className="form-element">
+          <div className="form__group">
             <input
+              className="form__input"
+              placeholder="+380(XX)XXX-XX-XX"
               name="phone"
               type="text"
               value={phone}

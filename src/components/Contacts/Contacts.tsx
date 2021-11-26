@@ -3,7 +3,7 @@ import ContactAddForm from '../ContactAddForm';
 import { NavLink } from 'react-router-dom';
 import './Contacts.scss';
 import { User } from '../../typedefs';
-import { loadUsers, deleteUser, addUser } from '../../api/users';
+import { loadUsers, deleteUser } from '../../api/users';
 import { useCallback } from 'react';
 
 interface Props {
@@ -13,7 +13,6 @@ interface Props {
 
 export const Contacts: React.FC<Props> = ({ handleUserIdChange, passSelectedUser }) => {
   const [users, setUsers] = useState<User[]>([]);
-  // const [userId, setUserId] = useState(0);
 
   const getUsersData = async () => {
     const users = await loadUsers();
@@ -43,30 +42,44 @@ export const Contacts: React.FC<Props> = ({ handleUserIdChange, passSelectedUser
   }
 
   return (
-    <div>
+    <div className="contacts-container">
       <h1>Contacts Page</h1>
       <ContactAddForm
         updateUsers={updateUsers}
       />
 
-      <div className="contacts-container">
+      <div>
         <ul className="contacts-list">
           {users.length && users.map(user => (
-            <li key={user.id}>
-              <p>{user.name}</p>
-              <NavLink
-                to={`/details/${user.id}`}
-                onClick={() => {
-                  handleUserIdChange(user.id);
-                  passSelectedUser(user);
-                  // setUserId(user.id);
-                }}
+            <li
+              className="contacts-list__card"
+              key={user.id}
               >
-                Details
-              </NavLink>
-              <button onClick={() => hanleUserDeletion(user.id)}>
-                Delete Contact
-              </button>
+              <p>
+                <strong>Contact name:</strong>
+                {' '}
+                {user.name}
+              </p>
+              <div className="contacts-list__buttons-container">
+                <NavLink
+                  className="button detail-button"
+                  to={`/details/${user.id}`}
+                  onClick={() => {
+                    handleUserIdChange(user.id);
+                    passSelectedUser(user);
+                  }}
+                >
+                  Details
+                </NavLink>
+
+                <button
+                  className="button delete-button"
+                  onClick={() => hanleUserDeletion(user.id)}
+                >
+                  Delete Contact
+                </button>
+
+              </div>
             </li>
           ))}
         </ul>

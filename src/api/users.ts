@@ -59,7 +59,6 @@ export async function changeUser(userId: number, body: patchUser ) {
   }
 
   const patchedUser = await response.json();
-  console.log(patchedUser)
 
   return patchedUser;
 }

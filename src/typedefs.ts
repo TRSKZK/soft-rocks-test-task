@@ -15,6 +15,13 @@ export interface UserToAdd {
 export interface patchUser {
   name?: string,
   email?: string,
-  phone?: number,
+  phone?: number | string,
   username?: string,
+}
+
+export interface CachedUser {
+  cachedName?: string,
+  cachedEmail?: string
+  cachedPhone?: number,
+  cachedUserName?: string,
 }

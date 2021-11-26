@@ -9,4 +9,17 @@
   padding: 50px 50px;
   border: 1px solid #c2b7b7;
   border-radius: 10px;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__buttons-container {
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 }

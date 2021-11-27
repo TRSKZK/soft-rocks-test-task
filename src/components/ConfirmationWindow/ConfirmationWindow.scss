@@ -1,0 +1,35 @@
+.higher-wrapp {
+  position: relative;
+}
+
+.wrapp {
+  position: absolute;
+  z-index: 1;
+  transform: translate(0, -100%);
+  width: 100%;
+  top: -150%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 10px;
+  background-color: wheat;
+  box-shadow: rgba(0, 0, 0, 0.25)
+    0px 54px 55px, rgba(0, 0, 0, 0.12)
+    0px -12px 30px, rgba(0, 0, 0, 0.12)
+    0px 4px 6px, rgba(0, 0, 0, 0.17)
+    0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  width: 600px;
+  height: 400px;
+  border: 1px solid #8c91ab;
+  transition: all 0.3s;
+}
+
+.wrapp.visible {
+  position: fixed;
+  visibility: visible;
+  transform: translate(-50%,-50%);
+  top: 50%;
+  left: 50%;
+  backdrop-filter: blur(10px);
+}

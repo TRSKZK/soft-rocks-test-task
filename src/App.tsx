@@ -1,26 +1,47 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState, useCallback } from 'react';
+import { Route, Routes } from 'react-router';
+import { User } from './typedefs';
+import './App.scss';
+import ContactDetails from './components/ContactDetails';
+import Contacts from './components/Contacts';
 
-function App() {
+const  App: React.FC = () => {
+  const [userId, setUserId] = useState(0);
+  const [selectedUser, setSelectedUser] = useState<User | null>();
+
+  const handleUserIdChange = useCallback((value: number) => {
+    setUserId(value)
+  }, []);
+
+  const passSelectedUser = useCallback((value: User) => {
+    setSelectedUser(value);
+  }, []);
+
+  console.log(userId)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <Routes>
+       <Route
+         path="/"
+         element={
+          <Contacts
+            handleUserIdChange={handleUserIdChange}
+            passSelectedUser={passSelectedUser}
+          />
+        }
+       />
+       <Route
+         path={`/details/${userId}`}
+         element={
+          <ContactDetails
+            userId={userId}
+            selectedUser={selectedUser}
+          />
+        }
+       />
+    </Routes>
+  )
+};
 
 export default App;

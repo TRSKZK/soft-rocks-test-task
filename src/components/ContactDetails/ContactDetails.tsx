@@ -16,7 +16,6 @@ export const ContactDetails: React.FC<Props> = ({ selectedUser, userId }) => {
   const [phone, setPhone] = useState(selectedUser?.phone || 'not assigned');
   const [userName, setUserName] = useState(selectedUser?.userName || 'no user name');
   const [cachedUser, setCachedUser] = useState<CachedUser | null>(null);
-  const [isErrorVisible, setIsErrorVsisble] = useState(false);
 
   useEffect(() => {
     setCachedUser({
@@ -29,14 +28,19 @@ export const ContactDetails: React.FC<Props> = ({ selectedUser, userId }) => {
     return () => {
       setCachedUser(null);
     }
-  }, [])
+  }, [selectedUser?.name,
+      selectedUser?.phone,
+      selectedUser?.email,
+      selectedUser?.userName
+    ] 
+  )
 
   const hadleFormSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     try {
       changeUser(userId, {name, email, phone, username: userName});
     } catch (eror) {
-      setIsErrorVsisble(true)
+      console.error(`${eror}`)
     }
   }
 

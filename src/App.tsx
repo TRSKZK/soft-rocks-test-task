@@ -18,8 +18,6 @@ const  App: React.FC = () => {
     setSelectedUser(value);
   }, []);
 
-  console.log(userId)
-
   return (
     <Routes>
        <Route
